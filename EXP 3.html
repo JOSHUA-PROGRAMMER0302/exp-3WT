@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- The crucial viewport tag for responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Online Resume Builder</title>
+
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #eef2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: #2c3e50;
+            color: #ffffff;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 4px solid #3498db;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+
+        /* Navigation */
+        nav {
+            background: #1a252f;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav li {
+            padding: 15px 25px;
+        }
+
+        nav a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        nav li:hover {
+            background: #2c3e50;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            padding: 30px 5%;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 25%;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            padding: 12px 0;
+            border-bottom: 1px solid #ecf0f1;
+            color: #555;
+            cursor: pointer;
+            transition: padding-left 0.3s;
+        }
+
+        .sidebar li:hover {
+            color: #3498db;
+            padding-left: 10px;
+        }
+
+        /* Content Area */
+        .content {
+            width: 75%;
+        }
+
+        .content h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        /* Cards Grid */
+        .cards {
+            display: flex;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .card {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #2980b9;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #21618c;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: #bdc3c7;
+            padding: 25px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* =========================================
+           MEDIA QUERIES (Responsive Breakpoints)
+           ========================================= */
+
+        /* Tablet Landscape & Small Desktops */
+        @media screen and (max-width: 992px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar, .content {
+                width: 100%;
+            }
+            .cards {
+                flex-wrap: wrap;
+            }
+            .card {
+                /* Calculates 50% width minus half the gap */
+                width: calc(50% - 12.5px);
+                flex: none; 
+            }
+        }
+
+        /* Mobile Devices */
+        @media screen and (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav li {
+                border-bottom: 1px solid #34495e;
+            }
+            .cards {
+                flex-direction: column;
+            }
+            .card {
+                width: 100%;
+            }
+            .hero {
+                padding: 40px 15px;
+            }
+        }
+
+        /* Small Mobile Devices */
+        @media screen and (max-width: 480px) {
+            header h1 {
+                font-size: 20px;
+            }
+            .hero h2 {
+                font-size: 20px;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            button {
+                width: 100%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Josh ResumeCraft Pro</h1>
+        <p>Your Next-Gen Online Resume Builder</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Templates</a></li>
+            <li><a href="#">My Portfolios</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h2>Build Your Career on Any Device</h2>
+        <p>Our responsive editor ensures your resume looks pixel-perfect whether you are designing on a desktop, tablet, or smartphone.</p>
+    </section>
+
+    <div class="container">
+        <!-- Sidebar representing resume builder sections -->
+        <div class="sidebar">
+            <h3>Resume Modules</h3>
+            <ul>
+                <li>👤 Personal Information</li>
+                <li>🎓 Education History</li>
+                <li>💼 Work Experience</li>
+                <li>🛠️ Technical Skills</li>
+                <li>🚀 Recent Projects</li>
+                <li>🌐 Extern		al Links</li>
+            </ul>
+        </div>
+
+        <!-- Main content representing template selection -->
+        <div class="content">
+            <h2>Select a Starting Template</h2>
+            <p>Choose from our industry-approved layouts to start building your professional profile.</p>
+
+            <div class="cards">
+                <div class="card">
+                    <!-- Placeholder images using placehold.co for a clean look -->
+                    <img src="https://imgs.search.brave.com/-jTYdygq4mWNWxNr__IU9sXoue0_mSqSY4yQUxpPeX0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/ZW5oYW5jdi5jb20v/cHJlZGVmaW5lZC1l/eGFtcGxlcy9mTXRC/b0F0ak9tajdMT1p3/Q2hsc0oyQWFJZkk0/YkkyRWFzUzdIUU5n/L2ltYWdlLnBuZw" alt="Minimalist Template">
+                    <h3>The Minimalist</h3>
+                    <p>Clean lines and lots of whitespace. Perfect for traditional corporate roles.</p>
+                    <button>Use Template</button>
+                </div>
+
+                <div class="card">
+                    <img src="https://imgs.search.brave.com/31W7x84vLKeGLOdIagvLswFgFkPSXzTjFoBnSVUXkfc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzhiLzc1/LzQ4LzhiNzU0ODI0/NjM0Njg3OWFiZDUz/NjZkODEyZDUyZjhi/LmpwZw" alt="Modern Tech Template">
+                    <h3>Modern Tech</h3>
+                    <p>Two-column layout optimized for software engineers and IT professionals.</p>
+                    <button>Use Template</button>
+                </div>
+
+                <div class="card">
+                    <img src="https://imgs.search.brave.com/SdW78kJ2MTYRZgdo0ZkyqJ2qJR_v0ZgJQ2N7JCZXFKE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90ZW1w/bGF0ZS5jYW52YS5j/b20vRUFITl8yV2lF/NDgvMi8wLzExMzF3/LUQxN3RzU0RmN0R3/LmpwZw" alt="Creative Template">
+                    <h3>Creative Bold</h3>
+                    <p>High-contrast colors to stand out. Ideal for designers and marketers.</p>
+                    <button>Use Template</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h3>ResumeCraft Pro v2.0</h3>
+        <p>© 2026 Online Resume Builder | Designed for Responsiveness</p>
+    </footer>
+
+</body>
+</html>
